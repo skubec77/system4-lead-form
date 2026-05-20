@@ -33,7 +33,7 @@
 
   /* HEADER */
   .header { background: var(--s4-blue); color: white; border-bottom: 4px solid var(--s4-red); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-  .header-inner { max-width: 820px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; gap: 18px; }
+  .header-inner { max-width: 1100px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; gap: 18px; }
   .header-logo { height: 52px; width: auto; background: white; padding: 6px 12px; border-radius: 6px; flex-shrink: 0; }
   .header-divider { width: 1px; height: 38px; background: rgba(255,255,255,0.3); flex-shrink: 0; }
   .header-text h1 { font-size: 17px; font-weight: 700; letter-spacing: -0.2px; }
@@ -41,7 +41,7 @@
 
   /* PROGRAM BANNER */
   .program-banner { background: linear-gradient(135deg, var(--s4-blue-dark) 0%, var(--s4-blue) 100%); border-bottom: 3px solid var(--s4-red); color: white; }
-  .program-banner-inner { max-width: 820px; margin: 0 auto; padding: 18px 24px; }
+  .program-banner-inner { max-width: 1100px; margin: 0 auto; padding: 18px 24px; }
   .program-banner h2 {
     font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
     opacity: 0.75; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
@@ -56,7 +56,7 @@
   .tier-desc { font-size: 10px; opacity: 0.82; line-height: 1.5; }
 
   /* MAIN */
-  .main { max-width: 820px; margin: 0 auto; padding: 28px 20px 60px; }
+  .main { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
 
   /* CARD */
   .card { background: var(--surface); border: 1px solid var(--s4-grey-border); border-radius: var(--radius); padding: 28px 30px; box-shadow: var(--shadow); margin-bottom: 18px; }
@@ -232,8 +232,11 @@
   .btn-push-crm { background: var(--s4-blue-light); color: var(--s4-blue); border: 1px solid #93c5fd; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Open Sans', sans-serif; transition: all 0.15s; white-space: nowrap; margin-left: 4px; }
   .btn-push-crm:hover { background: var(--s4-blue); color: white; }
   .btn-push-crm:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn-delete { background: #f3f4f6; color: #6b7280; border: 1px solid #d1d5db; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Open Sans', sans-serif; transition: all 0.15s; white-space: nowrap; margin-left: 4px; }
+  .btn-delete { background: #f3f4f6; color: #6b7280; border: 1px solid #d1d5db; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Open Sans', sans-serif; transition: all 0.15s; white-space: nowrap; }
   .btn-delete:hover { background: #991b1b; color: white; border-color: #991b1b; }
+  .btn-account-won { background: #f0fdf4; color: #16a34a; border: 1px solid #86efac; padding: 5px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: 'Open Sans', sans-serif; transition: all 0.15s; white-space: nowrap; }
+  .btn-account-won:hover { background: #16a34a; color: white; border-color: #16a34a; }
+  .badge-account-won { background: #dcfce7; color: #166534; padding: 3px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; white-space: nowrap; }
 
   /* TOAST */
   .toast { position: fixed; bottom: 24px; right: 24px; padding: 12px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; color: white; box-shadow: 0 4px 20px rgba(0,0,0,0.2); z-index: 9999; transition: opacity 0.3s; opacity: 0; pointer-events: none; }
@@ -476,6 +479,7 @@
 <div class="toast" id="toast"></div>
 
 <!-- Decline Reason Modal -->
+<!-- Decline Modal -->
 <div id="decline-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9998;justify-content:center;align-items:center;">
   <div style="background:white;border-radius:var(--radius);padding:28px 30px;max-width:440px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.2);border-top:4px solid var(--s4-red);">
     <div style="font-size:15px;font-weight:700;color:var(--s4-red);margin-bottom:4px;">Decline Lead</div>
@@ -484,6 +488,30 @@
     <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end;">
       <button onclick="cancelDecline()" style="padding:8px 18px;border:1px solid var(--s4-grey-border);border-radius:6px;background:white;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;color:var(--text-muted);">Cancel</button>
       <button onclick="confirmDecline()" style="padding:8px 18px;border:none;border-radius:6px;background:var(--s4-red);color:white;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Submit Decline</button>
+    </div>
+  </div>
+</div>
+
+<!-- Account Won Modal -->
+<div id="account-won-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:9998;justify-content:center;align-items:center;">
+  <div style="background:white;border-radius:var(--radius);padding:28px 30px;max-width:440px;width:90%;box-shadow:0 8px 32px rgba(0,0,0,0.2);border-top:4px solid #16a34a;">
+    <div style="font-size:15px;font-weight:700;color:#16a34a;margin-bottom:4px;">🎉 Account Won</div>
+    <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">This lead has converted to a paying account. Select the franchise owner payout details for accounting.</div>
+    <div style="margin-bottom:12px;">
+      <label style="font-size:12px;font-weight:700;color:var(--text);display:block;margin-bottom:6px;">Payout Type <span style="color:var(--s4-red);">*</span></label>
+      <select id="won-payout-type" style="width:100%;padding:10px 12px;border:1.5px solid var(--s4-grey-border);border-radius:6px;font-family:'Open Sans',sans-serif;font-size:13px;">
+        <option value="">Select payout type...</option>
+        <option value="$1,000 Flat Fee">$1,000 Flat Fee (National Account 20+ locations)</option>
+        <option value="50% First Month Margin">50% of First Month's Margin</option>
+      </select>
+    </div>
+    <div style="margin-bottom:12px;">
+      <label style="font-size:12px;font-weight:700;color:var(--text);display:block;margin-bottom:6px;">Payout Amount ($)</label>
+      <input type="text" id="won-payout-amount" style="width:100%;padding:10px 12px;border:1.5px solid var(--s4-grey-border);border-radius:6px;font-family:'Open Sans',sans-serif;font-size:13px;" placeholder="e.g. 1000.00 — leave blank if TBD">
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end;">
+      <button onclick="cancelAccountWon()" style="padding:8px 18px;border:1px solid var(--s4-grey-border);border-radius:6px;background:white;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;color:var(--text-muted);">Cancel</button>
+      <button onclick="confirmAccountWon()" style="padding:8px 18px;border:none;border-radius:6px;background:#16a34a;color:white;font-family:'Open Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;">Confirm Account Won</button>
     </div>
   </div>
 </div>
@@ -848,7 +876,7 @@ function resetForm() {
 
 
 // ── CORPORATE PORTAL ──────────────────────────────────────────
-const CORP_PASSWORD = 'System410091'; // Change this password
+const CORP_PASSWORD = 'system4corp'; // Change this password
 const CORP_SESSION = 's4_corp_session';
 const READ_WEBHOOK_URL = 'https://defaultfeb10a4d25d048849262796ba1852b.f6.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f9eeac5ebeff4ebda74541afc6cf3d15/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Rmrm7d19TbeB3VgzbyPMvodhhmj33fJChD0fEN-IZKQ';
 const UPDATE_WEBHOOK_URL = 'https://defaultfeb10a4d25d048849262796ba1852b.f6.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/20cc66722dae4e4c845e0c2318b747e6/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=gSq0_rocztFNuzkjDtAzxgcSp3cv7jMaKQkUh_4X9TU';
@@ -948,7 +976,10 @@ async function loadLeadsFromExcel() {
         approvedBy: row['Approved By'] || '',
         crmContactId: row['HubSpot Contact ID'] || '',
         crmPushed: !!(row['HubSpot Contact ID']),
-        existingClient: row['Existing Client'] || 'No'
+        existingClient: row['Existing Client'] || 'No',
+        accountWonDate: row['Account Won Date'] || '',
+        ownerPayoutType: row['Owner Payout Type'] || '',
+        ownerPayoutAmount: row['Owner Payout Amount'] || ''
       };
     }).filter(r => r.leadFirstName || r.leadLastName || r.email || r.company);
 
@@ -1031,6 +1062,13 @@ function renderCorpTable() {
       } else if (status === 'Declined') {
         actions = `<button class="btn-approve" onclick="corpApprove('${l.id}')">Re-approve</button>`;
       }
+      // Account Won button — only on Approved leads that haven't already been marked won
+      if (status === 'Approved' && !l.accountWonDate) {
+        actions += `<button class="btn-account-won" onclick="openAccountWon('${l.id}')">Account Won</button>`;
+      }
+      if (l.accountWonDate) {
+        actions += `<span class="badge-account-won">&#10003; Account Won</span>`;
+      }
       actions += `<button class="btn-delete" onclick="corpDelete('${l.id}')" title="Archive lead">Delete</button>`;
     }
 
@@ -1041,7 +1079,7 @@ function renderCorpTable() {
       <td style="font-size:11px;">${l.franchiseLocation||'--'}<br><span style="font-size:10px;color:var(--text-muted);">${l.salesRep||''}</span></td>
       <td>${tierBadge}</td>
       <td><span class="${badgeClass}">${status}</span>${actionDate ? `<br><span style="font-size:10px;color:var(--text-muted);">${actionDate}</span>` : ''}</td>
-      <td style="white-space:nowrap;">${actions}</td>
+      <td style="white-space:normal;min-width:200px;"><div style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;">${actions}</div></td>
     </tr>`;
   }).join('');
 
@@ -1168,6 +1206,68 @@ async function corpRestore(id) {
   } else {
     showToast('Restore failed to sync to Excel — refresh to retry', 'error');
   }
+}
+
+// ── ACCOUNT WON ──────────────────────────────────────────────
+let pendingAccountWonId = null;
+
+function openAccountWon(id) {
+  pendingAccountWonId = id;
+  document.getElementById('won-payout-type').value = '';
+  document.getElementById('won-payout-amount').value = '';
+  document.getElementById('account-won-modal').style.display = 'flex';
+}
+
+function cancelAccountWon() {
+  document.getElementById('account-won-modal').style.display = 'none';
+  pendingAccountWonId = null;
+}
+
+async function confirmAccountWon() {
+  const payoutType = document.getElementById('won-payout-type').value;
+  if (!payoutType) { alert('Please select a payout type.'); return; }
+
+  const payoutAmount = document.getElementById('won-payout-amount').value.trim();
+  const idx = corpLeads.findIndex(l => l.id === pendingAccountWonId);
+  if (idx < 0) return;
+
+  corpLeads[idx].accountWonDate = new Date().toISOString();
+  corpLeads[idx].ownerPayoutType = payoutType;
+  corpLeads[idx].ownerPayoutAmount = payoutAmount;
+
+  document.getElementById('account-won-modal').style.display = 'none';
+  updateCorpStats();
+  renderCorpTable();
+  showToast('Updating Account Won...', 'info');
+
+  try {
+    const res = await fetch(UPDATE_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        leadId: corpLeads[idx].leadId || '',
+        email: corpLeads[idx].email,
+        approvalStatus: corpLeads[idx].approvalStatus,
+        dateApproved: corpLeads[idx].dateApproved,
+        approvedBy: corpLeads[idx].approvedBy || 'Corporate',
+        archived: corpLeads[idx].archived || 'No',
+        accountWonDate: corpLeads[idx].accountWonDate,
+        ownerPayoutType: corpLeads[idx].ownerPayoutType,
+        ownerPayoutAmount: corpLeads[idx].ownerPayoutAmount,
+        salesRepEmail: corpLeads[idx].salesRepEmail || '',
+        salesRepName: corpLeads[idx].salesRep || '',
+        leadName: (corpLeads[idx].leadFirstName || '') + ' ' + (corpLeads[idx].leadLastName || ''),
+        company: corpLeads[idx].company || '',
+        declineReason: ''
+      })
+    });
+    console.log('Account Won update status:', res.status);
+    showToast('Account Won recorded!', 'success');
+  } catch (err) {
+    console.error('Failed to sync Account Won:', err);
+    showToast('Account Won failed to sync — refresh to retry', 'error');
+  }
+  pendingAccountWonId = null;
 }
 
 // ── PUSH TO CRM ──────────────────────────────────────────────
